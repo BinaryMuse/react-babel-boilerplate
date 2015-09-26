@@ -21,7 +21,7 @@ let babelExtra = {};
 let babelOptional = [
   // Using the runtime is good for libs as it doesn't
   // pollute the global scope. However, the polyfill
-  // is good for libs, as it enables instance methods.
+  // is good for apps, as it enables instance methods.
   // "runtime",
   "es7.decorators",
 ];
