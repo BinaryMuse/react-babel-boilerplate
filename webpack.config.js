@@ -35,13 +35,13 @@ if (__DEV__) {
     "react-transform": {
       transforms: [
         {
-          "transform": "react-transform-hmr",
-          "imports": ["react"],
-          "locals": ["module"]
+          transform: "react-transform-hmr",
+          imports: ["react"],
+          locals: ["module"],
         },
         {
-          "transform": "react-transform-catch-errors",
-          "imports": [
+          transform: "react-transform-catch-errors",
+          imports: [
             "react",
             "redbox-react",
             // the third import is OPTIONAL!
