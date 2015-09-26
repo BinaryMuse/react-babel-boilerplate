@@ -2,7 +2,7 @@ Webpack/Babel/React/HMR Kickstart
 =================================
 
 <div align="center">
-<img src="http://i.imgur.com/wAI5BG4.png" style="max-width: 600px">
+<img src="http://i.imgur.com/wAI5BG4.png" height="500">
 </div>
 
 I love React, especially in conjunction with Babel for ES2015+ features and webpack for dealing with all my client-side asset issues, but getting set up on a new project, especially when I just want to toy with an idea, always feels like more work than it should be. This project provides some boilerplate to set up what **I** consider to be a common and useful starer project.
