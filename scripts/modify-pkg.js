@@ -1,7 +1,7 @@
 var fs = require('fs');
 
 var buffer = fs.readFileSync('package.json');
-var json = JSON.stringify(buffer.toString('utf8'));
+var json = JSON.parse(buffer.toString('utf8'));
 
 json.scripts.start = 'babel-node ./node_modules/.bin/webpack-dev-server --inline --hot';
 json.description = '';
