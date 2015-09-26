@@ -16,55 +16,10 @@ let plugins = [
   }),
 ];
 
-let babelPlugins = [];
-let babelExtra = {};
-let babelOptional = [
-  // Using the runtime is good for libs as it doesn't
-  // pollute the global scope. However, the polyfill
-  // is good for apps, as it enables instance methods.
-  // "runtime",
-  "es7.decorators",
-];
-
-if (__DEV__) {
-  babelPlugins = babelPlugins.concat([
-    "react-transform",
-  ]);
-
-  Object.assign(babelExtra, {
-    "react-transform": {
-      transforms: [
-        {
-          transform: "react-transform-hmr",
-          imports: ["react"],
-          locals: ["module"],
-        },
-        {
-          transform: "react-transform-catch-errors",
-          imports: [
-            "react",
-            "redbox-react",
-            // the third import is OPTIONAL!
-            // when specified, its export is used as options to the reporter.
-            // see specific reporter's docs for the options it needs.
-            // "./src/reporterOptions",
-          ]
-        },
-      ],
-    }
-  });
-}
-
 if (!__DEV__) {
   plugins = plugins.concat([
     new webpack.optimize.UglifyJsPlugin(),
     new webpack.optimize.DedupePlugin(),
-  ]);
-
-  babelOptional = babelOptional.concat([
-    "optimisation.react.constantElements",
-    "optimisation.react.inlineElements",
-    // "minification.removeConsole", // removes `console.log` lines
   ]);
 }
 
@@ -85,11 +40,10 @@ const config = {
         loader: "babel",
         test: /\.jsx?$/,
         exclude: /node_modules/,
+        // NOTE: most of the behavior of babel is contained
+        // in the `.babelrc` file in this directory.
         query: {
-          stage: 2,
-          optional: babelOptional,
-          plugins: babelPlugins,
-          extra: babelExtra,
+          cacheDirectory: true,
         },
       },
       // To enable these loaders:

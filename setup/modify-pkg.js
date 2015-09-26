@@ -3,7 +3,7 @@ var fs = require('fs');
 var buffer = fs.readFileSync('package.json');
 var json = JSON.parse(buffer.toString('utf8'));
 
-json.scripts.start = 'babel-node ./node_modules/.bin/webpack-dev-server --inline --hot';
+json.scripts.start = 'webpack-dev-server --inline --hot';
 json.description = '';
 json.license = 'MIT';
 json.private = true;
