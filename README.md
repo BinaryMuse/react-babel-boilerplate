@@ -26,10 +26,10 @@ What does it do?
     * [babel-core](https://npmjs.com/package/babel-core)
     * [core-decorators](https://npmjs.com/package/core-decorators)
     * [webpack](https://npmjs.com/package/webpack)
-    * [webpack-dev-server](https://npmjs.com/package/webpack-dev-server)
     * [react](https://npmjs.com/package/react) (currently installs 0.14.0-rc1)
     * [react-dom](https://npmjs.com/package/react-dom) (currently installs 0.14.0-rc1)
  3. Installs and `--save-dev`s the latest stable versions of the following packages:
+    * [webpack-dev-server](https://npmjs.com/package/webpack-dev-server)
     * [babel-plugin-react-transform](https://npmjs.com/package/babel-plugin-react-transform)
     * [react-transform-hmr](https://npmjs.com/package/react-transform-hmr)
     * [react-transform-catch-errors](https://npmjs.com/package/react-transform-catch-errors)
