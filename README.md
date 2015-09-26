@@ -11,6 +11,8 @@ Instructions
  3. [Optional] If you also want to use [Redux](http://rackt.github.io/redux/), run `./scripts/install-redux.sh`
  4. Run `npm start` to start your new app
 
+As you edit the JS file that ships with the repo, the page should update immediately. Syntax errors should show up in your browser console, and runtime errors in React components will cause the page to display the error message in red.
+
 What does it do?
 ----------------
 
