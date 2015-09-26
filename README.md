@@ -1,7 +1,7 @@
 Webpack/Babel/React/HMR Kickstart
 =================================
 
-I love React, especially in conjunction with Babel for ES2015+ features and webpack for dealing with all my client-side asset issues, but getting set up on a new project, especially when I just want to toy with an idea, always feels like more work than it should be. This project provides some boilerplate to set up what *I* consider to be a common and useful starer project.
+I love React, especially in conjunction with Babel for ES2015+ features and webpack for dealing with all my client-side asset issues, but getting set up on a new project, especially when I just want to toy with an idea, always feels like more work than it should be. This project provides some boilerplate to set up what **I** consider to be a common and useful starer project.
 
 Instructions
 ------------
@@ -9,11 +9,12 @@ Instructions
  1. Clone this repo, `cd` into it
  2. Run `./scripts/setup.sh`
  3. [Optional] If you also want to use [Redux](http://rackt.github.io/redux/), run `./scripts/install-redux.sh`
+ 4. Run `npm start` to start your new app
 
 What does it do?
 ----------------
 
-`./scripts/setup.sh` does the following:
+### `./scripts/setup.sh`
 
  1. Creates a new `package.json` file via `npm init -y` (accepts all defaults)
  2. Installs and `--save`s the latest stable versions of the following packages:
@@ -34,7 +35,7 @@ What does it do?
  4. Adds a `start` script that starts `webpack-dev-server` with hot module replacement enabled and inlined
  5. Sets `private` to `true` inside `package.json` (to prevent accidental publishes)
 
-`./scripts/install-redux.sh` does the following:
+### `./scripts/install-redux.sh`
 
  1. Installs and `--save`s the latest stable versions of the following packages:
     * [redux](https://npmjs.com/package/redux)
@@ -42,7 +43,7 @@ What does it do?
     * [react-redux](https://npmjs.com/package/react-redux)
     * [redux-devtools](https://npmjs.com/package/redux-devtools)
 
-The repo also comes with a webpack config file that enables the following:
+### webpack config
 
 * `process.env.NODE_ENV` is defined client-side to be the same as server-side, defaulting to `"development"`
 * `__DEV__` is defined as a `true`/`false` value reflecting whether `NODE_ENV` is `"development"` or not, useful for wrapping debug tools, etc. in `if (__DEV__)`
