@@ -66,3 +66,9 @@ What does it do?
         * Inline elements (transform `createElement` calls into objects)
 
 Finally, the repo comes with a simple `.html` file and an `index.js` file to get you started writing real code.
+
+### Isn't this basically just like \<insert boilerplate generator here\>?
+
+This project is designed to generate a very small number of files, with very little magic. Most of the complexity lives in the number of modules installed and the relatively complex webpack configuration.
+
+The generator is small and simple enough that you can just delete the `scripts` directory after you run the initial setup to clean up all non-essential code.
