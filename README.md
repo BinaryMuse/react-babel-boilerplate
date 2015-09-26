@@ -1,5 +1,5 @@
-React + Babel Kickstart
-=======================
+React + Babel Boilerplate
+=========================
 
 <div align="center">
 <img src="http://i.imgur.com/PGH5x3y.png">
