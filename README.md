@@ -49,7 +49,7 @@ This script sets up the basic project structure. You must run this even if you w
  3. Installs and `--save-dev`s the latest stable versions of the following packages:
     * [babel-plugin-react-transform](https://npmjs.com/package/babel-plugin-react-transform)
     * [react-transform-hmr](https://npmjs.com/package/react-transform-hmr)
- 4. Adds a `start` script that starts `webpack-dev-server` with hot module replacement enabled and inlined
+ 4. Adds a `start` script that starts Express with hot module replacement enabled in development
  5. Sets `private` to `true` inside `package.json` (to prevent accidental publishes)
 
 ### `./setup/electron/install.sh`
