@@ -34,15 +34,15 @@ What does it do?
 This script sets up the basic project structure. You must run this even if you want to make an Electron app (below).
 
  1. Creates a new `package.json` file via `npm init -y` (accepts defaults)
- 2. Installs and `--save`s the latest stable versions of the following packages:
+ 2. Installs and `--save`s the latest stable versions of the following packages (except the Babel-related packages, which are locked to major version 5):
     * [babel](https://npmjs.com/package/babel)
     * [babel-loader](https://npmjs.com/package/babel-loader)
     * [babel-runtime](https://npmjs.com/package/babel-runtime)
     * [babel-core](https://npmjs.com/package/babel-core)
     * [core-decorators](https://npmjs.com/package/core-decorators)
     * [webpack](https://npmjs.com/package/webpack)
-    * [react](https://npmjs.com/package/react) (currently installs 0.14.0-rc1)
-    * [react-dom](https://npmjs.com/package/react-dom) (currently installs 0.14.0-rc1)
+    * [react](https://npmjs.com/package/react)
+    * [react-dom](https://npmjs.com/package/react-dom)
     * [express](https://www.npmjs.com/package/express)
     * [webpack-dev-middleware](https://www.npmjs.com/package/webpack-dev-middleware)
     * [webpack-hot-middleware](https://www.npmjs.com/package/webpack-hot-middleware)
