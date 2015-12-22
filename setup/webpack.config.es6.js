@@ -14,9 +14,15 @@ let plugins = [
     // dead-code-eliminated away.
     "__DEV__": JSON.stringify(__DEV__),
   }),
+  new webpack.optimize.OccurenceOrderPlugin(),
 ];
 
-if (!__DEV__) {
+if (__DEV__) {
+  plugins = plugins.concat([
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin(),
+  ]);
+} else {
   plugins = plugins.concat([
     new webpack.optimize.UglifyJsPlugin(),
     new webpack.optimize.DedupePlugin(),
@@ -25,26 +31,25 @@ if (!__DEV__) {
 
 const config = {
   cache: true,
-  entry: "./client/index.js",
+  entry: {
+    "main": [ "./client/index.js" ]
+  },
   devServer: {
     contentBase: "./public"
   },
   output: {
     path: __dirname + "/public",
-    filename: "bundle.js"
+    filename: "[name]-bundle.js"
   },
   devtool: "inline-source-map",
   module: {
     loaders: [
       {
+        // NOTE: most of the behavior of babel is contained
+        // in the `.babelrc` file in this directory.
         loader: "babel",
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        // NOTE: most of the behavior of babel is contained
-        // in the `.babelrc` file in this directory.
-        query: {
-          cacheDirectory: true,
-        },
       },
       // To enable these loaders:
       //   npm install --save file-loader style-loader css-loader less-loader
@@ -55,14 +60,18 @@ const config = {
       // },
       // {
       //   test: /\.less/,
-      //   loader: "style!css!less"<
+      //   loader: "style!css!less",
       // },
     ]
   },
   plugins: plugins
 };
 
-if (!__DEV__) {
+if (__DEV__) {
+  Object.keys(config.entry).forEach((entry) => {
+    config.entry[entry].unshift("webpack-hot-middleware/client");
+  });
+} else {
   delete config.devtool;
 }
 

@@ -34,34 +34,36 @@ What does it do?
 This script sets up the basic project structure. You must run this even if you want to make an Electron app (below).
 
  1. Creates a new `package.json` file via `npm init -y` (accepts defaults)
- 2. Installs and `--save`s the latest stable versions of the following packages:
+ 2. Installs and `--save`s the latest stable versions of the following packages (except the Babel-related packages, which are locked to major version 5):
     * [babel](https://npmjs.com/package/babel)
     * [babel-loader](https://npmjs.com/package/babel-loader)
     * [babel-runtime](https://npmjs.com/package/babel-runtime)
     * [babel-core](https://npmjs.com/package/babel-core)
     * [core-decorators](https://npmjs.com/package/core-decorators)
     * [webpack](https://npmjs.com/package/webpack)
-    * [react](https://npmjs.com/package/react) (currently installs 0.14.0-rc1)
-    * [react-dom](https://npmjs.com/package/react-dom) (currently installs 0.14.0-rc1)
+    * [react](https://npmjs.com/package/react)
+    * [react-dom](https://npmjs.com/package/react-dom)
+    * [express](https://www.npmjs.com/package/express)
+    * [webpack-dev-middleware](https://www.npmjs.com/package/webpack-dev-middleware)
+    * [webpack-hot-middleware](https://www.npmjs.com/package/webpack-hot-middleware)
  3. Installs and `--save-dev`s the latest stable versions of the following packages:
-    * [webpack-dev-server](https://npmjs.com/package/webpack-dev-server)
     * [babel-plugin-react-transform](https://npmjs.com/package/babel-plugin-react-transform)
     * [react-transform-hmr](https://npmjs.com/package/react-transform-hmr)
- 4. Adds a `start` script that starts `webpack-dev-server` with hot module replacement enabled and inlined
+ 4. Adds a `start` script that starts Express with hot module replacement enabled in development
  5. Sets `private` to `true` inside `package.json` (to prevent accidental publishes)
 
 ### `./setup/electron/install.sh`
 
 This script is optional, and **destructively** converts the project into a starter Electron app. It can only be run after `./setup/install.sh` is finished.
 
-**You will lose all unsaved data from `client` and `public` by running this command.**
+**You will lose all data from `client`, `public`, and `server` by running this command.** Be sure you move or check in any files you want to be able to recover.
 
  1. Installs and `--save-dev`s the latest stable versions of the following packages:
     * [electron-prebuilt](https://npmjs.com/package/electron-prebuilt)
     * [electron-rebuild](https://npmjs.com/package/electron-rebuild)
  2. Changes `package.json` so that:
-    1. Running `npm install` will automatically rebuild native modules so they work with Electron
-    2. Running `npm start` will start the Electron app
+    1. Running `npm start` will start the Electron app
+    2. Sets `app/bootstrap.js` as the entry point to the Electron app
  3. **Deletes** the `client` and `folder` folders
  4. Creates a new `app` folder with starter files for a working Electron app
 
@@ -89,7 +91,7 @@ The webpack config is *only* used in the basic install (*not* the Electron insta
 * Loads static content from `./public`
 * Builds to `./public/bundle.js`
 * In development, it also:
-    * Enables fast source maps
+    * Enables source maps
 * In production, it also:
     * Enables minification via `UglifyJsPlugin`
     * Enables `DedupePlugin`
