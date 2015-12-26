@@ -1,4 +1,4 @@
-read -p "This will DESTRUCTIVELY convert this folder into a starter Electron app, including DELETING the 'client' and 'public' folders. Continue? [y/N] " -n 1 -r
+read -p "This will DESTRUCTIVELY convert this folder into a starter Electron app, including DELETING the 'client', 'public', and 'server' folders. Continue? [y/N] " -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
