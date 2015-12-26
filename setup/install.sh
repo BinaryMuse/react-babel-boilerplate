@@ -1,7 +1,7 @@
 npm init -y > /dev/null
 node ./setup/modify-pkg.js
-npm install --save babel@^5 babel-loader@^5 babel-runtime@^5 babel-core@^5 core-decorators webpack react react-dom express webpack-dev-middleware webpack-hot-middleware
-npm install --save-dev babel-plugin-react-transform@^1 react-transform-catch-errors react-transform-hmr redbox-react
+npm install --save $(cat setup/deps | tr '\n' ' ')
+npm install --save-dev $(cat setup/dev-deps | tr '\n' ' ')
 cp -r ./setup/template/client ./client
 cp -r ./setup/template/public ./public
 cp -r ./setup/template/server ./server

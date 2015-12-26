@@ -1,0 +1,4 @@
+babel-plugin-react-transform@^2
+react-transform-hmr@^1
+webpack-dev-middleware@^1
+webpack-hot-middleware@^2
