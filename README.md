@@ -20,7 +20,7 @@ Instructions
 **IMPORTANT**: These operations are **destructive**. They will create, modify, and move files around. Take care if you're running them with uncommitted changes!
 
  1. Clone this repo, `cd` into it
- 2. Run `./setup/install.sh`
+ 2. Run `./setup/install.sh` from the root of the repository
  3. **[OPTIONAL]** If you want to build an [Electron](http://electron.atom.io/) app instead of a vanilla web app, run `./setup/electron/install.sh`. **This will delete `client` and `public`.** You still need to have run the previous step.
  4. Run `npm start` to start your new app
 
@@ -34,23 +34,32 @@ What does it do?
 This script sets up the basic project structure. You must run this even if you want to make an Electron app (below).
 
  1. Creates a new `package.json` file via `npm init -y` (accepts defaults)
- 2. Installs and `--save`s the latest stable versions of the following packages (except the Babel-related packages, which are locked to major version 5):
-    * [babel](https://npmjs.com/package/babel)
-    * [babel-loader](https://npmjs.com/package/babel-loader)
-    * [babel-runtime](https://npmjs.com/package/babel-runtime)
-    * [babel-core](https://npmjs.com/package/babel-core)
-    * [core-decorators](https://npmjs.com/package/core-decorators)
-    * [webpack](https://npmjs.com/package/webpack)
-    * [react](https://npmjs.com/package/react)
-    * [react-dom](https://npmjs.com/package/react-dom)
-    * [express](https://www.npmjs.com/package/express)
-    * [webpack-dev-middleware](https://www.npmjs.com/package/webpack-dev-middleware)
-    * [webpack-hot-middleware](https://www.npmjs.com/package/webpack-hot-middleware)
- 3. Installs and `--save-dev`s the latest stable versions of the following packages:
-    * [babel-plugin-react-transform](https://npmjs.com/package/babel-plugin-react-transform)
-    * [react-transform-hmr](https://npmjs.com/package/react-transform-hmr)
+ 2. Installs and `--save`s the following packages:
+    * babel-core@^6
+    * babel-loader@^6
+    * babel-plugin-transform-decorators@^6
+    * babel-plugin-transform-object-rest-spread@^6
+    * babel-plugin-transform-react-constant-elements@^6
+    * babel-plugin-transform-react-inline-elements@^6
+    * babel-plugin-transform-runtime@^6
+    * babel-preset-es2015@^6
+    * babel-preset-react@^6
+    * babel-polyfill@^6
+    * babel-register@^6
+    * babel-runtime@^6
+    * core-decorators@^0
+    * express@^4
+    * react@^0
+    * react-dom@^0
+    * webpack@^1
+ 3. Installs and `--save-dev`s the following packages:
+    * babel-plugin-react-transform@^2
+    * react-transform-hmr@^1
+    * webpack-dev-middleware@^1
+    * webpack-hot-middleware@^2
  4. Adds a `start` script that starts Express with hot module replacement enabled in development
- 5. Sets `private` to `true` inside `package.json` (to prevent accidental publishes)
+ 5. Adds a `build` script that builds the webpack bundles (run this with `NODE_ENV=production`)
+ 6. Sets `private` to `true` inside `package.json` (to prevent accidental publishes)
 
 ### `./setup/electron/install.sh`
 
@@ -64,35 +73,38 @@ This script is optional, and **destructively** converts the project into a start
  2. Changes `package.json` so that:
     1. Running `npm start` will start the Electron app
     2. Sets `app/bootstrap.js` as the entry point to the Electron app
- 3. **Deletes** the `client` and `folder` folders
+ 3. **Deletes** the `client`, `public`, and `server` folders
  4. Creates a new `app` folder with starter files for a working Electron app
 
 ### `.babelrc`
 
 A `.babelrc` file is included that sets options for *both* the basic install *and* the Electron app install.
 
-* Builds with [stage 2](https://babeljs.io/docs/usage/experimental/) options
-    * Also enables the following additional features:
-        * Decorators (`es7.decorators`)
-* In development:
-    * Enables `react-transform`, using the `react-transform-hmr` transform
-* In production:
-    * Enables the following Babel optimizations:
-        * Constant elements (extracts `createElement` calls into constants if possible)
-        * Inline elements (transform `createElement` calls into objects)
+ * Uses the following presets:
+    * react
+    * es2015
+ * Uses the following plugins:
+    * transform-object-rest-spread
+    * transform-decorators
+    * transform-runtime
+ * Uses the following additional plugins in development
+    * react-transform (with react-transform-hmr)
+ * Uses the following additional plugins in production
+    * transform-react-constant-elements (extracts `createElement` calls into constants if possible)
+    * transform-react-inline-elements (transform `createElement` calls into objects)
 
 ### webpack config
 
 The webpack config is *only* used in the basic install (*not* the Electron install).
 
-* `process.env.NODE_ENV` is defined client-side to be the same as server-side, defaulting to `"development"`
-* `__DEV__` is defined as a `true`/`false` value reflecting whether `NODE_ENV` is `"development"` or not, useful for wrapping debug tools, etc. in `if (__DEV__)`
-* Loads an entry from `./client/index.js`
-* Loads static content from `./public`
-* Builds to `./public/bundle.js`
-* In development, it also:
+ * `process.env.NODE_ENV` is defined client-side to be the same as server-side, defaulting to `"development"`
+ * `__DEV__` is defined as a `true`/`false` value reflecting whether `NODE_ENV` is `"development"` or not, useful for wrapping debug tools, etc. in `if (__DEV__)`
+ * Loads an entry from `./client/index.js`
+ * Loads static content from `./public`
+ * Builds to `./public/main-bundle.js`
+ * In development, it also:
     * Enables source maps
-* In production, it also:
+ * In production, it also:
     * Enables minification via `UglifyJsPlugin`
     * Enables `DedupePlugin`
 
