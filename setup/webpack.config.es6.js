@@ -54,12 +54,12 @@ const config = {
       // To enable these loaders:
       //   npm install --save file-loader style-loader css-loader less-loader
       // {
-      //   loader: "file",
       //   test: /\.(eot|svg|ttf|woff|woff2)$/,
+      //   loader: "file",
       //   exclude: /node_modules/,
       // },
       // {
-      //   test: /\.less/,
+      //   test: /\.less$/,
       //   loader: "style!css!less",
       // },
     ]
