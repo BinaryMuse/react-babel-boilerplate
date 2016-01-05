@@ -1,16 +1,11 @@
 {
-  // Don't inherit from higher-level .babelrc files
-  "breakConfig": true,
-  "stage": 2,
-  "optional": [
-    "es7.decorators"
-  ],
+  "presets": ["react", "es2015"],
+  "plugins": ["transform-object-rest-spread", "transform-decorators", "transform-runtime"],
   "env": {
     "production": {
-      "optional": [
-        "optimisation.react.constantElements",
-        "optimisation.react.inlineElements"
-        // "minification.removeConsole" // removes `console.log` lines
+      "plugins": [
+        "transform-react-constant-elements",
+        "transform-react-inline-elements"
       ]
     }
   }
